@@ -6,7 +6,7 @@ const path = require('path')
 // Sets up the Express App
 // =============================================================
 const app = express()
-const PORT = process.env || 3000
+const PORT = process.env.PORT || 3000
 
 //Middleware
 app.use(express.urlencoded({ extended: true }))
@@ -19,15 +19,15 @@ app.listen(PORT, function () {
 })
 
 // VIEWS ROUTES
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "/views/home.html"));
-  });
-  app.get("/tables", (req, res) => {
-    res.sendFile(path.join(__dirname, "/views/tables.html"));
-  });
-  app.get("/reserve", (req, res) => {
-    res.sendFile(path.join(__dirname, "/views/reserve.html"));
-  });
+//GET `/notes` - Should return the `notes.html` file.
+app.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/notes.html'))
+})
+
+//GET `*` - Should return the `index.html` file
+app.get("*", (req, res) => {
+res.sendFile(path.join(__dirname, "/public/index.html"));
+});
 
 //API routes
 app.get('/api/config', (req, res) => {
@@ -36,13 +36,13 @@ app.get('/api/config', (req, res) => {
   })
 })
 
-app.get('/api/tables', (req, res) => {
-  res.json({reservations: reservations,
-    waitlist: waitlist})
-})
+// app.get('/api/tables', (req, res) => {
+//   res.json({reservations: reservations,
+//     waitlist: waitlist})
+// })
 
-app.post('/api/tables', (req, res) => {
-  reservations.push(req.body)
-  res.json({reservations: reservations,
-    waitlist: waitlist})
-})
+// app.post('/api/tables', (req, res) => {
+//   reservations.push(req.body)
+//   res.json({reservations: reservations,
+//     waitlist: waitlist})
+// })

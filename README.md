@@ -4,7 +4,7 @@
 
 Node.js based note taking web app that leverages express for server setup and connection routes. All notes are stored in a local json file.
 
-![app screenshot](./develop/public/assets/express-note-taker-screenshot1.png)
+![app screenshot](/public/assets/express-note-taker-screenshot1.png)
 
 - [Installation](#installation)
 - [Usage](#usage)
